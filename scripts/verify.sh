@@ -7,6 +7,9 @@ set -e
 echo "🔍 Verifying project for deployment..."
 echo ""
 
+cd "$(dirname "$0")/.."
+PROJECT_DIR=$(pwd)
+
 # 1. Check required files exist
 echo "1️⃣ Checking required files..."
 REQUIRED_FILES=(
@@ -67,14 +70,23 @@ else
   exit 1
 fi
 
-# 4. Install dependencies
+# 4. Verify overflow-x hidden is set (جلوگیری از اسکرول افقی)
 echo ""
-echo "4️⃣ Installing dependencies..."
+echo "4️⃣ Verifying overflow-x hidden in CSS..."
+if grep -q 'overflow-x: hidden' src/app/globals.css; then
+  echo "  ✅ overflow-x: hidden is set"
+else
+  echo "  ⚠️  overflow-x: hidden NOT found — ممکن است اسکرول افقی ایجاد شود"
+fi
+
+# 5. Install dependencies
+echo ""
+echo "5️⃣ Installing dependencies..."
 bun install 2>&1 | tail -3
 
-# 5. Run build
+# 6. Run build
 echo ""
-echo "5️⃣ Running build..."
+echo "6️⃣ Running build..."
 rm -rf out .next
 if bun run build 2>&1 | tail -20; then
   if [ -d "out" ] && [ -f "out/index.html" ]; then
@@ -88,19 +100,19 @@ else
   exit 1
 fi
 
-# 6. Check CNAME is in output
+# 7. Check CNAME is in output
 echo ""
-echo "6️⃣ Verifying CNAME in build output..."
+echo "7️⃣ Verifying CNAME in build output..."
 if [ -f "out/CNAME" ]; then
   echo "  ✅ out/CNAME exists: $(cat out/CNAME)"
 else
   echo "  ⚠️  out/CNAME not found (will need manual fix)"
 fi
 
-# 7. Check at least one article is generated
+# 8. Check at least one article is generated
 echo ""
-echo "7️⃣ Verifying blog articles generated..."
-ARTICLE_COUNT=$(ls out/blog/ 2>/dev/null | grep -v "^$\|index.html\|__next" | wc -l)
+echo "8️⃣ Verifying blog articles generated..."
+ARTICLE_COUNT=$(ls out/blog/ 2>/dev/null | grep -v "^$\|index.html\|__next" | wc -l | tr -d ' ')
 if [ "$ARTICLE_COUNT" -ge 5 ]; then
   echo "  ✅ $ARTICLE_COUNT articles generated"
 else
@@ -112,5 +124,5 @@ echo "🎉 All checks passed! Ready to commit and push."
 echo ""
 echo "Next steps:"
 echo "  git add ."
-echo "  git commit -m \"Initial site deployment\""
+echo "  git commit -m \"<your message>\""
 echo "  git push origin main"

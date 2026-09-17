@@ -121,11 +121,14 @@
   }
   html {
     scroll-behavior: smooth;
+    /* جلوگیری از اسکرول افقی ناشی از عناصر تزئینی absolute */
+    overflow-x: hidden;
   }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "ss02";
+    overflow-x: hidden;
   }
   /* Persian numerals support where useful */
   .persian-num {

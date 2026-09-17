@@ -62,15 +62,11 @@ export function ShareCard() {
   return (
     <SectionReveal delay={0.2}>
       <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5 overflow-hidden relative">
-        {/* Decorative corner ornaments */}
-        <span
-          aria-hidden
-          className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-primary/10 blur-2xl"
-        />
-        <span
-          aria-hidden
-          className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-accent/10 blur-2xl"
-        />
+        {/* Decorative corner ornaments — در داخل wrapper با overflow-hidden */}
+        <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+          <span className="absolute top-0 right-0 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
+          <span className="absolute bottom-0 left-0 h-24 w-24 rounded-full bg-accent/10 blur-2xl" />
+        </div>
         <CardContent className="p-5 sm:p-6 relative">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
             <div className="flex items-center gap-3">

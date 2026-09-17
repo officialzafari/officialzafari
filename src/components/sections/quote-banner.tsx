@@ -9,24 +9,28 @@ import { SectionReveal } from "@/components/section-reveal";
 export function QuoteBanner() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-24 bg-primary text-primary-foreground">
-      {/* Decorative pattern */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.6) 1px, transparent 0)",
-          backgroundSize: "32px 32px",
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-accent/30 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-accent/20 blur-3xl"
-      />
+      {/* Wrapper برای عناصر تزئینی — اطمینان از overflow-hidden روی blur orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Decorative pattern */}
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.6) 1px, transparent 0)",
+            backgroundSize: "32px 32px",
+          }}
+        />
+        {/* Blur orbs — حالا در داخل یک wrapper با overflow-hidden */}
+        <div
+          aria-hidden
+          className="absolute top-10 right-10 h-72 w-72 rounded-full bg-accent/30 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="absolute bottom-10 left-10 h-72 w-72 rounded-full bg-accent/20 blur-3xl"
+        />
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionReveal>
