@@ -1,0 +1,369 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/vazirmatn";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Vazirmatn Variable", "Vazirmatn", system-ui, sans-serif;
+  --font-mono: "Vazirmatn Variable", ui-monospace, monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* Classic & formal — gold/amber on cream parchment (light) */
+  --radius: 0.5rem;
+  --background: #f6f1e9;            /* warm cream parchment */
+  --foreground: #2a2520;            /* warm dark brown */
+  --card: #fbf8f2;                  /* lighter cream */
+  --card-foreground: #2a2520;
+  --popover: #fbf8f2;
+  --popover-foreground: #2a2520;
+  --primary: #b8893f;              /* museum gold */
+  --primary-foreground: #fffaf0;    /* near-white warm */
+  --secondary: #e5dcc8;            /* soft sand */
+  --secondary-foreground: #4a3f30;
+  --muted: #ede4d0;
+  --muted-foreground: #7a6d56;
+  --accent: #cd632d;               /* rust/terracotta */
+  --accent-foreground: #fffaf0;
+  --destructive: #9f0712;
+  --border: #d4c8b0;
+  --input: #d4c8b0;
+  --ring: #b8893f;
+  --chart-1: #b8893f;
+  --chart-2: #cd632d;
+  --chart-3: #9a7a45;
+  --chart-4: #eebb58;
+  --chart-5: #7e5a42;
+  --sidebar: #fbf8f2;
+  --sidebar-foreground: #2a2520;
+  --sidebar-primary: #b8893f;
+  --sidebar-primary-foreground: #fffaf0;
+  --sidebar-accent: #ede4d0;
+  --sidebar-accent-foreground: #4a3f30;
+  --sidebar-border: #d4c8b0;
+  --sidebar-ring: #b8893f;
+}
+
+.dark {
+  /* Warm dark browns with gold accents (dark) */
+  --background: #1b1813;            /* warm dark brown */
+  --foreground: #f3de90;            /* pale gold */
+  --card: #24211e;                  /* slightly lighter warm */
+  --card-foreground: #f3de90;
+  --popover: #24211e;
+  --popover-foreground: #f3de90;
+  --primary: #eebb58;               /* bright gold for dark mode */
+  --primary-foreground: #1b1813;
+  --secondary: #312d28;
+  --secondary-foreground: #f3de90;
+  --muted: #2a2520;
+  --muted-foreground: #a49d94;
+  --accent: #cd632d;
+  --accent-foreground: #fffaf0;
+  --destructive: #e40014;
+  --border: rgba(243, 222, 144, 0.12);
+  --input: rgba(243, 222, 144, 0.15);
+  --ring: #eebb58;
+  --chart-1: #eebb58;
+  --chart-2: #cd632d;
+  --chart-3: #b8893f;
+  --chart-4: #f3de90;
+  --chart-5: #e8a95c;
+  --sidebar: #24211e;
+  --sidebar-foreground: #f3de90;
+  --sidebar-primary: #eebb58;
+  --sidebar-primary-foreground: #1b1813;
+  --sidebar-accent: #312d28;
+  --sidebar-accent-foreground: #f3de90;
+  --sidebar-border: rgba(243, 222, 144, 0.12);
+  --sidebar-ring: #eebb58;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "ss02";
+  }
+  /* Persian numerals support where useful */
+  .persian-num {
+    font-feature-settings: "ss01";
+  }
+}
+
+/* Custom scrollbar — classic gold accent */
+@layer utilities {
+  .scrollbar-gold::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-gold::-webkit-scrollbar-track {
+    background: var(--muted);
+  }
+  .scrollbar-gold::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+  }
+  .scrollbar-gold::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }
+
+  /* Subtle gold gradient text for headings */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Decorative divider with gold ornament */
+  .divider-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .divider-ornament::before,
+  .divider-ornament::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    max-width: 6rem;
+    background: linear-gradient(to var(--dir, left), transparent, var(--primary));
+  }
+
+  /* Persian calligraphy-inspired letter spacing for headers */
+  .tracking-persian {
+    letter-spacing: -0.01em;
+  }
+
+  /* Card hover lift */
+  .card-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px -8px rgba(184, 137, 63, 0.25);
+    border-color: var(--primary);
+  }
+
+  /* Texture overlay for classic feel */
+  .bg-parchment {
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(184, 137, 63, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(205, 99, 45, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(238, 187, 88, 0.03) 0%, transparent 50%);
+  }
+}
+
+/* Reveal animation for scroll */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section anchor offset for sticky header */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* ============ Print styles — clean CV PDF output ============ */
+@media print {
+  /* Force light theme for print regardless of user pref */
+  :root {
+    --background: #ffffff !important;
+    --foreground: #1a1a1a !important;
+    --card: #ffffff !important;
+    --card-foreground: #1a1a1a !important;
+    --primary: #8a6520 !important;
+    --muted-foreground: #444444 !important;
+    --border: #cccccc !important;
+  }
+
+  /* Hide chrome */
+  header,
+  footer,
+  .no-print,
+  [aria-label="بازگشت به بالا"],
+  .fixed {
+    display: none !important;
+  }
+
+  /* Reset layout for paper */
+  html,
+  body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    font-size: 11pt !important;
+  }
+
+  body {
+    min-height: auto !important;
+    display: block !important;
+  }
+
+  main {
+    display: block !important;
+  }
+
+  /* Remove animations & decorative backgrounds */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Force all scroll-reveal content visible in print
+     (Framer Motion sets opacity:0 inline until inView; without
+     scrolling, those sections would be invisible in the PDF) */
+  * {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  section {
+    padding: 0.5rem 0 !important;
+    page-break-inside: avoid;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  section[id] {
+    scroll-margin-top: 0 !important;
+  }
+
+  .bg-parchment,
+  [class*="bg-"] {
+    background: transparent !important;
+  }
+
+  /* Expand sections to full width on paper */
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* CV header — name + title prominent */
+  #home {
+    text-align: center !important;
+  }
+
+  #home .grid {
+    display: block !important;
+  }
+
+  #home .order-2 {
+    display: none !important; /* hide the photo on print to save space */
+  }
+
+  #home h1 {
+    font-size: 22pt !important;
+    margin: 0 0 4pt 0 !important;
+  }
+
+  /* Hide decorative elements */
+  .divider-ornament::before,
+  .divider-ornament::after,
+  [class*="divider"] {
+    display: none !important;
+  }
+
+  /* Cards: simple bordered boxes */
+  .card-lift:hover {
+    transform: none !important;
+  }
+
+  /* Avoid page breaks inside cards */
+  [class*="card"] {
+    page-break-inside: avoid;
+    border: 1px solid #ccc !important;
+  }
+
+  /* Forms are not part of a CV */
+  #contact form {
+    display: none !important;
+  }
+
+  /* Expand FAQ accordion in print so answers are visible.
+     Radix uses the `hidden` HTML attribute on AccordionContent
+     when closed — we must unset it. */
+  [data-state][hidden] {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  [hidden] {
+    /* Only target accordion content, not other intentionally-hidden elements.
+       We scope to elements that also have data-state (Radix content). */
+  }
+  /* The chevron rotate icon — hide in print */
+  [class*="AccordionChevron"] {
+    display: none !important;
+  }
+
+  /* Ensure links show their URL in print (optional, classic CV style) */
+  a[href^="mailto:"],
+  a[href^="tel:"] {
+    color: #1a1a1a !important;
+    text-decoration: none !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+}

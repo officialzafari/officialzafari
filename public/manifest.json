@@ -1,0 +1,25 @@
+{
+  "name": "علی ظفری مقدم — دانشجوی دکتری اقتصاد",
+  "short_name": "علی ظفری مقدم",
+  "description": "وبسایت شخصی علی ظفری مقدم، دانشجوی دکتری اقتصاد.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f1e9",
+  "theme_color": "#b8893f",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/profile.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
