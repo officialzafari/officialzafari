@@ -129,34 +129,37 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="relative"
+              className="relative overflow-visible flex flex-col items-center"
             >
-              {/* Decorative frame */}
-              <div
-                aria-hidden
-                className="absolute -inset-3 rounded-full border border-primary/30"
-                style={{
-                  background:
-                    "conic-gradient(from 180deg at 50% 50%, transparent 0deg, hsl(38 60% 55% / 0.25) 90deg, transparent 180deg, hsl(20 70% 50% / 0.20) 270deg, transparent 360deg)",
-                  filter: "blur(8px)",
-                }}
-              />
-              <div className="relative aspect-[4/5] w-56 sm:w-72 lg:w-80 overflow-hidden rounded-full border-4 border-card shadow-2xl">
-                <Image
-                  src={person.profileImage}
-                  alt={person.name}
-                  fill
-                  priority
-                  sizes="(max-width: 640px) 14rem, (max-width: 1024px) 18rem, 20rem"
-                  className="object-cover object-top"
+              {/* Wrapper برای نگه داشتن عناصر تزئینی داخل کادر */}
+              <div className="relative overflow-hidden rounded-full p-3">
+                {/* Decorative frame */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 rounded-full border border-primary/30"
+                  style={{
+                    background:
+                      "conic-gradient(from 180deg at 50% 50%, transparent 0deg, hsl(38 60% 55% / 0.25) 90deg, transparent 180deg, hsl(20 70% 50% / 0.20) 270deg, transparent 360deg)",
+                    filter: "blur(8px)",
+                  }}
                 />
+                <div className="relative aspect-[4/5] w-56 sm:w-72 lg:w-80 overflow-hidden rounded-full border-4 border-card shadow-2xl">
+                  <Image
+                    src={person.profileImage}
+                    alt={person.name}
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 14rem, (max-width: 1024px) 18rem, 20rem"
+                    className="object-cover object-top"
+                  />
+                </div>
               </div>
               {/* Name plate */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full border border-primary/40 bg-background/95 px-4 py-1.5 text-xs font-medium text-foreground whitespace-nowrap shadow-md"
+                className="relative -mt-4 rounded-full border border-primary/40 bg-background/95 px-4 py-1.5 text-xs font-medium text-foreground whitespace-nowrap shadow-md z-10"
               >
                 {person.city}، ایران
               </motion.div>

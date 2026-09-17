@@ -121,14 +121,23 @@
   }
   html {
     scroll-behavior: smooth;
-    /* جلوگیری از اسکرول افقی ناشی از عناصر تزئینی absolute */
+    /* جلوگیری قطعی از اسکرول افقی ناشی از عناصر تزئینی absolute */
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "ss02";
     overflow-x: hidden;
+    overflow-y: visible;
+    max-width: 100%;
+  }
+  /* اطمینان از اینکه هیچ بخشی اسکرول افقی ایجاد نکند */
+  main, header, footer, section, article {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
   }
   /* Persian numerals support where useful */
   .persian-num {
