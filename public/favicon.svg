@@ -4,8 +4,24 @@
       <stop offset="0%" stop-color="#b8893f"/>
       <stop offset="100%" stop-color="#cd632d"/>
     </linearGradient>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a2520"/>
+      <stop offset="100%" stop-color="#1b1813"/>
+    </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="#1b1813"/>
+  <!-- Background -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
   <rect x="3" y="3" width="58" height="58" rx="12" fill="none" stroke="url(#g)" stroke-width="2"/>
-  <text x="32" y="44" text-anchor="middle" font-family="Tahoma, sans-serif" font-size="38" font-weight="bold" fill="url(#g)">ع</text>
+  <!-- Rising chart bars (economic growth) -->
+  <rect x="14" y="38" width="7" height="14" rx="1.5" fill="url(#g)" opacity="0.5"/>
+  <rect x="24" y="30" width="7" height="22" rx="1.5" fill="url(#g)" opacity="0.7"/>
+  <rect x="34" y="22" width="7" height="30" rx="1.5" fill="url(#g)" opacity="0.85"/>
+  <rect x="44" y="14" width="7" height="38" rx="1.5" fill="url(#g)"/>
+  <!-- Trend arrow -->
+  <path d="M 14 36 L 24 28 L 34 20 L 48 12" stroke="#eebb58" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Arrow head -->
+  <path d="M 42 12 L 48 12 L 48 18" stroke="#eebb58" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Coin/currency symbol on top -->
+  <circle cx="16" cy="20" r="5" fill="#eebb58" opacity="0.9"/>
+  <text x="16" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#1b1813">$</text>
 </svg>

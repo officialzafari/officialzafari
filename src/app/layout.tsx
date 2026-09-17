@@ -5,32 +5,51 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@/components/analytics";
 import { person } from "@/lib/data";
 
+const siteUrl = `https://${person.domain}`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(`https://${person.domain}`),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${person.name} | ${person.title}`,
     template: `%s | ${person.name}`,
   },
   description:
-    "وبسایت شخصی علی ظفری مقدم، دانشجوی دکتری اقتصاد. تجربیات کاری، تحصیلات و مهارت‌های تخصصی در حوزه اقتصاد و توسعه.",
+    "وبسایت شخصی علی ظفری مقدم، دانشجوی دکتری اقتصاد از مشهد. پژوهشگر در حوزه توسعه اقتصادی، برنامه‌ریزی اقتصادی و اقتصاد رفتاری. تجربیات کاری، تحصیلات و مقالات تخصصی.",
   keywords: [
+    // فارسی — اصلی
     "علی ظفری مقدم",
+    "ظفری مقدم",
+    "علی ظفری",
     "اقتصاددان",
     "دانشجوی دکتری اقتصاد",
+    "دکتری اقتصاد",
     "توسعه اقتصادی",
+    "برنامه‌ریزی اقتصادی",
+    "اقتصاد رفتاری",
+    "اقتصادسنجی",
+    "اقتصاد ایران",
     "برندینگ شخصی",
     "مشهد",
     "دانشگاه فردوسی مشهد",
-    "Iran Economist",
+    "دانشگاه علامه طباطبایی",
+    "پژوهشگر اقتصاد",
+    "تحلیل اقتصادی",
+    // انگلیسی — برای سرچ انگلیسی
     "Ali Zafari Moghaddam",
+    "Ali Zafari",
+    "Zafari Moghaddam",
+    "Iran Economist",
+    "Economics PhD Student",
+    "Economic Development Researcher",
+    "Ferdowsi University of Mashhad",
+    "Iran Economics Blog",
   ],
-  authors: [{ name: person.name, url: `https://${person.domain}` }],
+  authors: [{ name: person.name, url: siteUrl }],
   creator: person.name,
   publisher: person.name,
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico" },
     ],
     apple: "/profile.jpg",
   },
@@ -38,9 +57,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "profile",
     locale: "fa_IR",
-    url: `https://${person.domain}`,
+    alternateLocale: ["en_US"],
+    url: siteUrl,
     title: `${person.name} | ${person.title}`,
-    description: `وبسایت شخصی ${person.name}، ${person.title} از ${person.city}.`,
+    description: `وبسایت شخصی ${person.name}، ${person.title} از ${person.city}. پژوهشگر اقتصاد توسعه.`,
     siteName: person.name,
     images: [
       {
@@ -55,7 +75,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${person.name} | ${person.title}`,
-    description: `وبسایت شخصی ${person.name}، ${person.title}.`,
+    description: `وبسایت شخصی ${person.name}، ${person.title} از ${person.city}.`,
     images: ["/api/og"],
   },
   robots: {
@@ -66,25 +86,30 @@ export const metadata: Metadata = {
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
   alternates: {
-    canonical: `https://${person.domain}`,
+    canonical: siteUrl,
     types: {
-      "application/rss+xml": `https://${person.domain}/feed.xml`,
+      "application/rss+xml": `${siteUrl}/feed.xml`,
     },
   },
 };
 
+// Schema.org Person — برای غنی‌سازی نتایج گوگل
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: person.name,
+  alternateName: ["Ali Zafari Moghaddam", "علی ظفری مقدم"],
   jobTitle: person.title,
+  description:
+    "اقتصاددان و دانشجوی دکتری اقتصاد از مشهد، ایران. پژوهشگر در حوزه توسعه اقتصادی، برنامه‌ریزی اقتصادی و اقتصاد رفتاری.",
   email: `mailto:${person.email}`,
   telephone: person.phone,
-  url: `https://${person.domain}`,
-  image: `https://${person.domain}/profile.jpg`,
+  url: siteUrl,
+  image: `${siteUrl}/profile.jpg`,
   address: {
     "@type": "PostalAddress",
     addressLocality: person.city,
@@ -106,11 +131,36 @@ const personJsonLd = {
     "اقتصاد",
     "توسعه اقتصادی",
     "برنامه‌ریزی اقتصادی",
-    "حل مسئله",
-    "رهبری",
-    "ارتباطات",
+    "اقتصاد رفتاری",
+    "اقتصادسنجی",
+    "اقتصاد ایران",
+    "Economics",
+    "Economic Development",
+    "Behavioral Economics",
   ],
   knowsLanguage: ["fa", "en"],
+  sameAs: [siteUrl],
+};
+
+// Schema.org WebSite — برای کمک به گوگل در درک سایت
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: `${person.name} — وبسایت شخصی`,
+  alternateName: `${person.name} — Personal Website`,
+  url: siteUrl,
+  inLanguage: ["fa-IR", "en"],
+  description:
+    "وبسایت شخصی علی ظفری مقدم، دانشجوی دکتری اقتصاد. مقالات، پژوهش‌ها و تجربیات حرفه‌ای در حوزه اقتصاد.",
+  publisher: {
+    "@type": "Person",
+    name: person.name,
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${siteUrl}/blog?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({
@@ -124,6 +174,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
       </head>
       <body className="font-sans antialiased bg-background text-foreground min-h-screen flex flex-col bg-parchment">

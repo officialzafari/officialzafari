@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# Explicitly allow major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 Sitemap: https://zafarimoghaddam.ir/sitemap.xml
